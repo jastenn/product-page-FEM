@@ -7,6 +7,9 @@ module.exports = {
       serif: ["Kumbh Sans", "sans-serif"],
     },
     screens: {
+      "2xs-only": {
+        max: "340px",
+      },
       sm: "580px",
       md: "768px",
       lg: "1024px",
@@ -16,8 +19,9 @@ module.exports = {
     colors: {
       ...colors,
       orange: {
-        100: "hsl(25, 100%, 94%)",
         400: " hsl(26, 100%, 55%)",
+        300: "#FFAC6A",
+        100: "hsl(25, 100%, 94%)",
       },
       slate: {
         700: "hsl(220, 13%, 13%)",

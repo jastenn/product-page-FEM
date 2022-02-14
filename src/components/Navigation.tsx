@@ -1,5 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { FC, useState } from "react"
+import { FC, useState, useRef } from "react"
+
+import { useFocusWithin } from "@react-aria/interactions"
+
+import { Cart, CartItem } from "../types"
 
 import { Transition } from "@headlessui/react"
 
@@ -8,7 +12,9 @@ import CartPopover from "./CartPopover"
 import { ReactComponent as Logo } from "../assets/images/logo.svg"
 import { ReactComponent as IconMenu } from "../assets/images/icon-menu.svg"
 import { ReactComponent as IconClose } from "../assets/images/icon-close.svg"
+
 import ImgAvatar from "../assets/images/image-avatar.png"
+import ProductThumbnail1 from "../assets/images/image-product-1-thumbnail.jpg"
 
 interface NavItem {
   route: string
@@ -17,6 +23,7 @@ interface NavItem {
 
 interface NavigationProps {
   items?: NavItem[]
+  cart?: Cart
 }
 
 const navList: NavItem[] = [
@@ -27,18 +34,45 @@ const navList: NavItem[] = [
   { route: "#", name: "Contact" },
 ]
 
-/**
- * TODO:
- *  -- Position popover correctly on breakpoint sm and up
- *  -- Fix the layout on navigation item on breakpoint md and up
- */
+const defaultCart: Cart = {
+  items: [
+    {
+      image: ProductThumbnail1,
+      productName: "Fall Limited Edition Sneakers",
+      price: 112,
+      quantity: 3,
+    },
+  ],
+  total: 0,
+}
 
-const Navigation: FC<NavigationProps> = ({ items = navList }) => {
+const Navigation: FC<NavigationProps> = ({
+  items = navList,
+  cart = defaultCart,
+}) => {
+  const { focusWithinProps } = useFocusWithin({
+    onBlurWithin() {
+      hideMenu()
+    },
+  })
+
+  const closeMenuBtn = useRef<HTMLButtonElement>(null)
+
   const [active, setActive] = useState(false)
 
-  const menuHandler = () => {
-    setActive((prev) => !prev)
+  const showMenu = () => {
+    setActive(true)
+    closeMenuBtn.current?.focus()
   }
+
+  const hideMenu = () => {
+    setActive(false)
+  }
+
+  const removeItemHandler = (item: CartItem) => {
+    console.log(item.productName)
+  }
+
   return (
     <nav className="">
       <div className="flex items-center justify-between w-[87%] max-w-5xl mx-auto py-5 md:py-0 md:h-24 lg:h-28 md:border-b md:border-gray-200">
@@ -46,7 +80,7 @@ const Navigation: FC<NavigationProps> = ({ items = navList }) => {
           {/* BACKDROP */}
           <Transition
             className="bg-black/25 absolute inset-0 origin-top transition-opacity"
-            onClick={menuHandler}
+            onClick={hideMenu}
             show={active}
             enterFrom="opacity-0"
             enterTo="opacity-100"
@@ -55,7 +89,7 @@ const Navigation: FC<NavigationProps> = ({ items = navList }) => {
           ></Transition>
 
           <button
-            onClick={menuHandler}
+            onClick={showMenu}
             className="md:hidden focus:outline-none group mr-4"
             aria-label="menu"
           >
@@ -79,9 +113,11 @@ const Navigation: FC<NavigationProps> = ({ items = navList }) => {
             leave="transition-transform !block duration-200"
             leaveTo="-translate-x-full"
             leaveFrom="translate-x-0"
+            {...focusWithinProps}
           >
             <button
-              onClick={menuHandler}
+              ref={closeMenuBtn}
+              onClick={hideMenu}
               className="md:hidden mb-8 group focus:outline-none"
               aria-label="close"
             >
@@ -109,7 +145,11 @@ const Navigation: FC<NavigationProps> = ({ items = navList }) => {
         </div>
 
         <div className="flex sm:relative justify-between items-center">
-          <CartPopover className="mr-5" />
+          <CartPopover
+            onRemoveItem={removeItemHandler}
+            cart={cart}
+            className="mr-5"
+          />
           <a
             className="h-6 focus:outline-none group sm:h-[2.125rem] md:h-[2.63rem] lg:h-[3.125rem]"
             href="#"

@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @layer components {
-  .svg-focus path {
+  .svg-focus path,
+  .svg-focus use {
     @apply md:group-hover:!fill-slate-700 group-focus:!fill-slate-700 transition-[fill];
   }
 }
