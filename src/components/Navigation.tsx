@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { FC, useState, useRef } from "react"
+import { FC, useState, useEffect, useRef } from "react"
 
 import { useFocusWithin } from "@react-aria/interactions"
 
@@ -60,9 +60,14 @@ const Navigation: FC<NavigationProps> = ({
 
   const [active, setActive] = useState(false)
 
+  useEffect(() => {
+    if (active) {
+      closeMenuBtn.current?.focus()
+    }
+  }, [active])
+
   const showMenu = () => {
     setActive(true)
-    closeMenuBtn.current?.focus()
   }
 
   const hideMenu = () => {
@@ -118,7 +123,7 @@ const Navigation: FC<NavigationProps> = ({
             <button
               ref={closeMenuBtn}
               onClick={hideMenu}
-              className="md:hidden mb-8 group focus:outline-none"
+              className="md:hidden focus:outline-none mb-8 group"
               aria-label="close"
             >
               <IconClose className="svg-focus" />
@@ -130,7 +135,7 @@ const Navigation: FC<NavigationProps> = ({
                 key={item.name}
               >
                 <a
-                  className="peer focus:opacity-75 md:focus:opacity-[unset] focus:outline-none"
+                  className="peer focus:opacity-60 md:focus:opacity-[unset] focus:outline-none"
                   href={item.route}
                 >
                   {item.name}

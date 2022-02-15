@@ -2,11 +2,9 @@ import Navigation from "./components/Navigation"
 
 function App() {
   return (
-    <div className="App ">
+    <div className="App text-slate-700">
       <Navigation />
-      <h1 className="text-3xl text-orange-400 font-bold underline">
-        Hello world
-      </h1>
+      <div></div>
     </div>
   )
 }
