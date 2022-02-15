@@ -10,19 +10,26 @@ import Button from "./Button"
 
 interface CartPopoverProp {
   className?: string
-  cart: Cart
+  cart?: Cart
   onRemoveItem: (item: CartItem) => void
+  onCheckout: (cart: Cart) => void
 }
 
 const CartPopover: FC<CartPopoverProp> = ({
   onRemoveItem,
   className = "",
   cart,
+  onCheckout,
 }) => {
+  const checkoutHandler = () => {
+    if (!cart) return
+
+    onCheckout(cart)
+  }
   return (
     <Popover className={`${className}`}>
       <Popover.Button className="block group focus:outline-none relative">
-        {cart.items.length && (
+        {cart?.items.length && (
           <span
             aria-label="items on cart"
             className="bg-orange-400 text-white rounded-full font-bold absolute -top-2 -right-2 text-xs w-[1.125rem]"
@@ -30,12 +37,12 @@ const CartPopover: FC<CartPopoverProp> = ({
             {cart.items.length}
           </span>
         )}
-        <IconCart className="svg-focus flex items-center justify-center h-full w-full" />
+        <IconCart className="svg-focus-slate flex items-center justify-center h-full w-full" />
       </Popover.Button>
 
       <Transition
         as={Popover.Panel}
-        className="fixed top-[4.75rem] origin-top md:origin-top-right !overflow-hidden inset-x-2 bg-white drop-shadow-xl motion-reduce:!transition-none rounded-lg sm:absolute sm:top-12 md:top-[3.125rem] lg:top-14 sm:right-0 sm:inset-x-[unset] sm:w-[22.5rem]"
+        className="fixed z-50 top-[4.75rem] origin-top md:origin-top-right !overflow-hidden inset-x-2 bg-white drop-shadow-xl motion-reduce:!transition-none rounded-lg sm:absolute sm:top-12 md:top-[3.125rem] lg:top-14 sm:right-0 sm:inset-x-[unset] sm:w-[22.5rem]"
         enter="transition ease-out duration-100"
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"
@@ -46,7 +53,7 @@ const CartPopover: FC<CartPopoverProp> = ({
         <h1 className="font-bold text-base text-left p-6">Cart</h1>
         <hr />
         <div className="p-6 min-h-[10rem]">
-          {cart.items.length ? (
+          {cart?.items.length ? (
             <ul>
               {cart.items.map((item) => (
                 <li
@@ -77,14 +84,16 @@ const CartPopover: FC<CartPopoverProp> = ({
                   <button
                     onClick={() => onRemoveItem(item)}
                     aria-label="remove"
-                    className="p-2 group"
+                    className="p-2 focus:outline-none group"
                   >
-                    <IconDelete className="svg-focus" />
+                    <IconDelete className="svg-focus-slate" />
                   </button>
                 </li>
               ))}
 
-              <Button className="w-full mt-6">Checkout</Button>
+              <Button onClick={checkoutHandler} className="w-full mt-6">
+                Checkout
+              </Button>
             </ul>
           ) : (
             <div className="h-full flex items-center justify-center">

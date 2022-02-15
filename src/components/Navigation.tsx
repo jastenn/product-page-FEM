@@ -78,13 +78,17 @@ const Navigation: FC<NavigationProps> = ({
     console.log(item.productName)
   }
 
+  const checkoutHandler = (cart: Cart) => {
+    console.log(cart)
+  }
+
   return (
     <nav className="">
-      <div className="flex items-center justify-between w-[87%] max-w-5xl mx-auto py-5 md:py-0 md:h-24 lg:h-28 md:border-b md:border-gray-200">
+      <div className="flex items-center justify-between w-[87%] max-w-[69.5rem] mx-auto py-5 md:py-0 md:h-24 lg:h-28 md:border-b md:border-gray-200">
         <div className="flex md:h-full md:items-center justify-between">
           {/* BACKDROP */}
           <Transition
-            className="bg-black/25 absolute inset-0 origin-top transition-opacity"
+            className="bg-black/25 absolute z-10 inset-0 origin-top transition-opacity"
             onClick={hideMenu}
             show={active}
             enterFrom="opacity-0"
@@ -95,13 +99,13 @@ const Navigation: FC<NavigationProps> = ({
 
           <button
             onClick={showMenu}
-            className="md:hidden focus:outline-none group mr-4"
+            className="md:hidden group mr-4 focus:outline-none"
             aria-label="menu"
           >
-            <IconMenu className="svg-focus" />
+            <IconMenu className="svg-focus-slate" />
           </button>
 
-          <a className="md:mr-8 lg:mr-14" href="#">
+          <a className="md:mr-8 lg:mr-14 focus:outline-offset-2" href="#">
             <Logo />
           </a>
 
@@ -111,7 +115,7 @@ const Navigation: FC<NavigationProps> = ({
             unmount={false}
             className={`${
               active ? "block" : "hidden"
-            } absolute motion-reduce:!transition-none font-bold text-lg inset-y-0 left-0 text-left bg-white w-60 p-6 md:static md:!flex md:items-baseline md:justify-between md:p-0 md:gap-4 lg:gap-8 md:font-normal md:text-base md:h-full md:w-[unset]`}
+            } absolute motion-reduce:!transition-none z-10 font-bold text-lg inset-y-0 left-0 text-left bg-white w-60 p-6 md:static md:!flex md:items-baseline md:justify-between md:p-0 md:gap-4 lg:gap-8 md:font-normal md:text-base md:h-full md:w-[unset]`}
             enter="transition-transform !block duration-200"
             enterFrom="-translate-x-full"
             enterTo="translate-x-0"
@@ -126,7 +130,7 @@ const Navigation: FC<NavigationProps> = ({
               className="md:hidden focus:outline-none mb-8 group"
               aria-label="close"
             >
-              <IconClose className="svg-focus" />
+              <IconClose className="svg-focus-slate" />
             </button>
 
             {items.map((item) => (
@@ -151,6 +155,7 @@ const Navigation: FC<NavigationProps> = ({
 
         <div className="flex sm:relative justify-between items-center">
           <CartPopover
+            onCheckout={checkoutHandler}
             onRemoveItem={removeItemHandler}
             cart={cart}
             className="mr-5"
