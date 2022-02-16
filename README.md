@@ -30,8 +30,8 @@ Users should be able to:
 
 ### Screenshot
 
-![Mobile View](https://ibb.co/8gsqNMV)
-![Desktop View](https://ibb.co/5M9Gbht)
+![Mobile View](https://i.ibb.co/v4qpV18/Screenshot-2022-02-16-at-20-01-11-React-App.png)
+![Desktop View](https://i.ibb.co/DVbz0fs/Screenshot-2022-02-16-at-19-59-53-React-App.png)
 
 ### Links
 
