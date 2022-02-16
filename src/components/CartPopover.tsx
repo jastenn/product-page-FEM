@@ -29,7 +29,7 @@ const CartPopover: FC<CartPopoverProp> = ({
   return (
     <Popover className={`${className}`}>
       <Popover.Button className="block group focus:outline-none relative">
-        {cart?.items.length && (
+        {!!cart?.items.length && (
           <span
             aria-label="items on cart"
             className="bg-orange-400 text-white rounded-full font-bold absolute -top-2 -right-2 text-xs w-[1.125rem]"
@@ -42,7 +42,7 @@ const CartPopover: FC<CartPopoverProp> = ({
 
       <Transition
         as={Popover.Panel}
-        className="fixed z-50 top-[4.75rem] origin-top md:origin-top-right !overflow-hidden inset-x-2 bg-white drop-shadow-xl motion-reduce:!transition-none rounded-lg sm:absolute sm:top-12 md:top-[3.125rem] lg:top-14 sm:right-0 sm:inset-x-[unset] sm:w-[22.5rem]"
+        className="absolute z-50 top-[4.75rem] origin-top md:origin-top-right !overflow-hidden inset-x-2 bg-white drop-shadow-xl motion-reduce:!transition-none rounded-lg sm:absolute sm:top-12 md:top-[3.125rem] lg:top-14 sm:right-0 sm:inset-x-[unset] sm:w-[22.5rem]"
         enter="transition ease-out duration-100"
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"

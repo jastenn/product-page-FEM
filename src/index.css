@@ -7,17 +7,22 @@
 @layer utilities {
   .svg-focus-slate path,
   .svg-focus-slate use {
-    @apply md:group-hover:fill-slate-700 group-focus:fill-slate-700 transition-[fill];
+    @apply !fill-slate-600 md:group-hover:!fill-slate-700 group-focus:!fill-slate-700 transition-[fill];
   }
 
   .svg-focus-orange path,
   .svg-focus-orange use {
-    @apply md:group-hover:!fill-orange-300 group-focus:fill-orange-300 transition-[fill];
+    @apply md:group-hover:!fill-orange-300 group-focus:!fill-orange-300 transition-[fill];
   }
 
   .svg-fill-white path,
   .svg-fill-white use {
-    @apply fill-white;
+    @apply !fill-white;
+  }
+
+  .svg-fill-orange path,
+  .svg-fill-orange use {
+    @apply !fill-orange-400;
   }
 }
 

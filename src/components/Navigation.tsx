@@ -3,7 +3,7 @@ import { FC, useState, useEffect, useRef } from "react"
 
 import { useFocusWithin } from "@react-aria/interactions"
 
-import { Cart, CartItem } from "../types"
+import { Cart, CartItem, User } from "../types"
 
 import { Transition } from "@headlessui/react"
 
@@ -13,9 +13,6 @@ import { ReactComponent as Logo } from "../assets/images/logo.svg"
 import { ReactComponent as IconMenu } from "../assets/images/icon-menu.svg"
 import { ReactComponent as IconClose } from "../assets/images/icon-close.svg"
 
-import ImgAvatar from "../assets/images/image-avatar.png"
-import ProductThumbnail1 from "../assets/images/image-product-1-thumbnail.jpg"
-
 interface NavItem {
   route: string
   name: string
@@ -23,7 +20,9 @@ interface NavItem {
 
 interface NavigationProps {
   items?: NavItem[]
-  cart?: Cart
+  cart: Cart
+  onRemoveCartItem: (item: CartItem) => void
+  user: User
 }
 
 const navList: NavItem[] = [
@@ -34,21 +33,11 @@ const navList: NavItem[] = [
   { route: "#", name: "Contact" },
 ]
 
-const defaultCart: Cart = {
-  items: [
-    {
-      image: ProductThumbnail1,
-      productName: "Fall Limited Edition Sneakers",
-      price: 112,
-      quantity: 3,
-    },
-  ],
-  total: 0,
-}
-
 const Navigation: FC<NavigationProps> = ({
   items = navList,
-  cart = defaultCart,
+  cart,
+  onRemoveCartItem,
+  user,
 }) => {
   const { focusWithinProps } = useFocusWithin({
     onBlurWithin() {
@@ -72,10 +61,6 @@ const Navigation: FC<NavigationProps> = ({
 
   const hideMenu = () => {
     setActive(false)
-  }
-
-  const removeItemHandler = (item: CartItem) => {
-    console.log(item.productName)
   }
 
   const checkoutHandler = (cart: Cart) => {
@@ -118,7 +103,7 @@ const Navigation: FC<NavigationProps> = ({
             unmount={false}
             className={`${
               active ? "block" : "hidden"
-            } absolute z-10 motion-reduce:!transition-none font-bold text-lg inset-y-0 left-0 text-left bg-white w-60 p-6 md:static md:!flex md:items-baseline md:justify-between md:p-0 md:gap-4 lg:gap-8 md:font-normal md:text-base md:h-full md:w-[unset]`}
+            } absolute z-20 motion-reduce:!transition-none font-bold text-lg inset-y-0 left-0 text-left bg-white w-60 p-6 md:static md:!flex md:items-baseline md:justify-between md:p-0 md:gap-4 lg:gap-8 md:font-normal md:text-base md:h-full md:w-[unset]`}
             enter="transition-transform !block duration-200"
             enterFrom="-translate-x-full"
             enterTo="translate-x-0"
@@ -159,7 +144,7 @@ const Navigation: FC<NavigationProps> = ({
         <div className="flex sm:relative justify-between items-center">
           <CartPopover
             onCheckout={checkoutHandler}
-            onRemoveItem={removeItemHandler}
+            onRemoveItem={onRemoveCartItem}
             cart={cart}
             className="mr-5"
           />
@@ -169,7 +154,7 @@ const Navigation: FC<NavigationProps> = ({
           >
             <img
               className="h-full group-focus:ring-2 md:group-hover:ring-2 rounded-full ring-orange-400  aspect-square"
-              src={ImgAvatar}
+              src={user.avatar}
               alt="user's avatar"
             />
           </a>

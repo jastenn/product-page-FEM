@@ -19,3 +19,7 @@ export interface Product {
   discountedPrice: number
   stock: number
 }
+
+export interface User {
+  avatar: string
+}

@@ -41,7 +41,7 @@ const Counter: FC<CounterProps> = ({
       className={`flex items-stretch justify-between bg-slate-300 min-h-[3.5rem] rounded-xl ${className}`}
     >
       <CtrlButton onClick={incrementHandler}>
-        <IconPlus className="svg-focus-orange" />
+        <IconPlus className="svg-focus-orange svg-fill-orange" />
       </CtrlButton>
       <div
         className="font-bold text-[.875rem] self-center text-stale-600"
@@ -51,7 +51,7 @@ const Counter: FC<CounterProps> = ({
         {value}
       </div>
       <CtrlButton onClick={decrementHandler}>
-        <IconMinus className="svg-focus-orange" />
+        <IconMinus className="svg-focus-orange svg-fill-orange" />
       </CtrlButton>
     </div>
   )
