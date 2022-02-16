@@ -18,14 +18,14 @@ const Details: FC<DetailsProps> = ({ product, className }) => {
 
   const incrementQuantity = () => {
     setQuantity((value) => {
-      if (++value >= product.stock) return product.stock
+      if (value >= product.stock) return product.stock
       else return ++value
     })
   }
 
   const decrementQuantity = () => {
     setQuantity((value) => {
-      if (--value <= 1) return 1
+      if (value <= 1) return 1
       else return --value
     })
   }

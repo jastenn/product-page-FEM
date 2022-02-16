@@ -82,6 +82,9 @@ const Navigation: FC<NavigationProps> = ({
     console.log(cart)
   }
 
+  useEffect(() => {
+    console.log(active)
+  }, [active])
   return (
     <nav className="">
       <div className="flex items-center justify-between w-[87%] max-w-[69.5rem] mx-auto py-5 md:py-0 md:h-24 lg:h-28 md:border-b md:border-gray-200">
@@ -115,7 +118,7 @@ const Navigation: FC<NavigationProps> = ({
             unmount={false}
             className={`${
               active ? "block" : "hidden"
-            } absolute motion-reduce:!transition-none z-10 font-bold text-lg inset-y-0 left-0 text-left bg-white w-60 p-6 md:static md:!flex md:items-baseline md:justify-between md:p-0 md:gap-4 lg:gap-8 md:font-normal md:text-base md:h-full md:w-[unset]`}
+            } absolute z-10 motion-reduce:!transition-none font-bold text-lg inset-y-0 left-0 text-left bg-white w-60 p-6 md:static md:!flex md:items-baseline md:justify-between md:p-0 md:gap-4 lg:gap-8 md:font-normal md:text-base md:h-full md:w-[unset]`}
             enter="transition-transform !block duration-200"
             enterFrom="-translate-x-full"
             enterTo="translate-x-0"
