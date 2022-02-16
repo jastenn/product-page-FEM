@@ -32,14 +32,14 @@ const Details: FC<DetailsProps> = ({ product, className }) => {
 
   return (
     <div className={`${className}`}>
-      <h3 className="text-orange-400 mb-3 font-bold text-xs uppercase tracking-wider md:mb-4">
+      <h3 className="text-orange-400 mb-[1.125rem] font-bold text-xs uppercase tracking-wider md:mb-4">
         {product.brand}
       </h3>
-      <h2 className="font-bold capitalize text-[1.75rem] mb-6 leading-7 sm:text-[2rem] sm:mb-7 lg:mb-9 md:text-4xl lg:text-[2.75rem]">
+      <h2 className="font-bold capitalize text-[1.75rem] mb-6 leading-[1.1] md:leading-[1.1] sm:text-[2rem] sm:mb-7 lg:mb-9 md:text-4xl lg:text-[2.75rem]">
         {product.name}
       </h2>
       <p className="text-slate-600 mb-6">{product.desc}</p>
-      <div className="mb-4">
+      <div className="mb-4 md:mb-9">
         <div className="font-bold flex items-center justify-between md:block">
           <div className="flex items-center md:mb-2">
             <div aria-label="price" className="capitalize text-[1.75rem]">

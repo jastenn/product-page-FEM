@@ -123,11 +123,11 @@ const Navigation: FC<NavigationProps> = ({
 
             {items.map((item) => (
               <li
-                className="mt-3 md:mt-0 md:h-full relative md:flex md:items-center"
+                className="mt-3  md:mt-0 md:h-full relative md:flex md:items-center"
                 key={item.name}
               >
                 <a
-                  className="peer focus:opacity-60 md:focus:opacity-[unset] focus:outline-none"
+                  className="peer md:text-slate-600 md:hover:text-slate-700 md:focus:text-slate-700 transition-colors motion-reduce:transition-none focus:opacity-60 md:focus:opacity-[unset] focus:outline-none"
                   href={item.route}
                 >
                   {item.name}
