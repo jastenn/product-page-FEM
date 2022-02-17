@@ -45,7 +45,8 @@ const Counter: FC<CounterProps> = ({
       </CtrlButton>
       <div
         className="font-bold text-[.875rem] self-center text-stale-600"
-        aria-label="Quantity"
+        // eslint-disable-next-line jsx-a11y/aria-props
+        aria-description="Quantity"
         aria-live="polite"
       >
         {value}

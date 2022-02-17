@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-props */
 import React, { FC, useState } from "react"
 
 import type { Product } from "../types"
@@ -42,17 +43,16 @@ const Details: FC<DetailsProps> = ({ product, className }) => {
       <div className="mb-4 md:mb-9">
         <div className="font-bold flex items-center justify-between md:block">
           <div className="flex items-center md:mb-2">
-            <div aria-label="price" className="capitalize text-[1.75rem]">
+            <div className="capitalize text-[1.75rem]">
+              <span className="sr-only">price</span>
               {currencyFormat(
                 product.discount ? product.discountedPrice : product.price
               )}
             </div>
 
             {product.discount && (
-              <div
-                aria-label="discount"
-                className="text-orange-400 text-[.875rem] bg-orange-100 px-2 rounded w-min ml-4"
-              >
+              <div className="text-orange-400 text-[.875rem] bg-orange-100 px-2 rounded w-min ml-4">
+                <span className="sr-only">discount</span>
                 {product.discount}%
               </div>
             )}
@@ -60,9 +60,10 @@ const Details: FC<DetailsProps> = ({ product, className }) => {
 
           {product.discount && (
             <div
-              aria-label="original-price"
+              aria-description="original-price"
               className="text-slate-400 text-[.875rem] line-through"
             >
+              <span className="sr-only">original-price</span>
               {currencyFormat(product.price)}
             </div>
           )}

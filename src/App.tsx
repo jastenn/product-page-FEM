@@ -9,8 +9,6 @@ import Details from "./components/Details"
 
 import ProductThumbnail1 from "./assets/images/image-product-1-thumbnail.jpg"
 import UserAvatar from "./assets/images/image-avatar.png"
-import Swiper from "swiper"
-import { useFocusWithin } from "@react-aria/interactions"
 
 const product: Product = {
   brand: "Sneaker Company",
@@ -41,11 +39,6 @@ const defaultUser: User = {
 function App() {
   // -1 only if no slide is focused
   const [isLightboxActive, setIsLightboxActive] = useState(false)
-  const { focusWithinProps } = useFocusWithin({
-    onBlurWithin() {
-      setIsLightboxActive(false)
-    },
-  })
   const [cart, setCart] = useState<Cart>(defaultCart)
   const [user] = useState<User>(defaultUser)
 
@@ -76,7 +69,6 @@ function App() {
     <div className="App overflow-hidden relative text-slate-700 text-[.875rem] sm:text-base">
       {isLightboxActive && (
         <div
-          {...focusWithinProps}
           aria-live="polite"
           aria-relevant="additions"
           className="absolute  h-[100rem] modal inset-0 bg-black/75 z-30"

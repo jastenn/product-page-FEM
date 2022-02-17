@@ -90,20 +90,24 @@ const Navigation: FC<NavigationProps> = ({
             className="md:hidden group mr-4 focus:outline-none"
             aria-label="menu"
           >
-            <IconMenu className="svg-focus-slate" />
+            <IconMenu aria-hidden className="svg-focus-slate" />
           </button>
 
-          <a className="md:mr-8 lg:mr-14 focus:outline-offset-2" href="#">
-            <Logo />
+          <a
+            aria-label="Logo"
+            className="md:mr-8 lg:mr-14 focus:outline-offset-2"
+            href="#"
+          >
+            <Logo aria-hidden />
           </a>
 
           <Transition
             show={active}
-            as="ul"
+            as="div"
             unmount={false}
             className={`${
               active ? "block" : "hidden"
-            } absolute z-20 motion-reduce:!transition-none font-bold text-lg inset-y-0 left-0 text-left bg-white w-60 p-6 md:static md:!flex md:items-baseline md:justify-between md:p-0 md:gap-4 lg:gap-8 md:font-normal md:text-base md:h-full md:w-[unset]`}
+            } absolute z-20 motion-reduce:!transition-none font-bold text-lg inset-y-0 left-0 text-left bg-white w-60 p-6 md:static md:!block md:font-normal md:text-base md:h-full md:p-0 md:w-[unset]`}
             enter="transition-transform !block duration-200"
             enterFrom="-translate-x-full"
             enterTo="translate-x-0"
@@ -118,26 +122,28 @@ const Navigation: FC<NavigationProps> = ({
               className="md:hidden focus:outline-none mb-8 group"
               aria-label="close"
             >
-              <IconClose className="svg-focus-slate" />
+              <IconClose aria-hidden className="svg-focus-slate" />
             </button>
 
-            {items.map((item) => (
-              <li
-                className="mt-3  md:mt-0 md:h-full relative md:flex md:items-center"
-                key={item.name}
-              >
-                <a
-                  className="peer md:text-slate-600 md:hover:text-slate-700 md:focus:text-slate-700 transition-colors motion-reduce:transition-none focus:opacity-60 md:focus:opacity-[unset] focus:outline-none"
-                  href={item.route}
+            <ul className="md:!flex md:items-baseline md:h-full md:justify-between md:gap-4 lg:gap-8 ">
+              {items.map((item) => (
+                <li
+                  className="mt-3  md:mt-0 md:h-full relative md:flex md:items-center"
+                  key={item.name}
                 >
-                  {item.name}
-                </a>
-                <span
-                  className="hidden md:block peer-hover:opacity-100 peer-focus:opacity-100 absolute bg-orange-400 h-1 bottom-0 w-full opacity-0 transition-opacity motion-reduce:transition-none"
-                  aria-hidden
-                ></span>
-              </li>
-            ))}
+                  <a
+                    className="peer md:text-slate-600 md:hover:text-slate-700 md:focus:text-slate-700 transition-colors motion-reduce:transition-none focus:opacity-60 md:focus:opacity-[unset] focus:outline-none"
+                    href={item.route}
+                  >
+                    {item.name}
+                  </a>
+                  <span
+                    className="hidden md:block peer-hover:opacity-100 peer-focus:opacity-100 absolute bg-orange-400 h-1 bottom-0 w-full opacity-0 transition-opacity motion-reduce:transition-none"
+                    aria-hidden
+                  ></span>
+                </li>
+              ))}
+            </ul>
           </Transition>
         </div>
 
