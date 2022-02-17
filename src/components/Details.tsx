@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/aria-props */
 import React, { FC, useState } from "react"
 
 import type { Product } from "../types"
@@ -59,10 +58,7 @@ const Details: FC<DetailsProps> = ({ product, className }) => {
           </div>
 
           {product.discount && (
-            <div
-              aria-description="original-price"
-              className="text-slate-400 text-[.875rem] line-through"
-            >
+            <div className="text-slate-400 text-[.875rem] line-through">
               <span className="sr-only">original-price</span>
               {currencyFormat(product.price)}
             </div>

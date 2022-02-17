@@ -78,8 +78,8 @@ function App() {
               ref={closeLightboxBtn}
               className="group block ml-auto p-2 aspect-square mb-3"
               onClick={() => setIsLightboxActive(false)}
-              aria-label="close-lightbox"
             >
+              <span className="sr-only">close lightbox</span>
               <IconClose className="svg-fill-white svg-focus-orange scale-125" />
             </button>
             <Carousel id="lightbox" focused />
