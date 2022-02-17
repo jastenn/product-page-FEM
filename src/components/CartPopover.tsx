@@ -30,10 +30,8 @@ const CartPopover: FC<CartPopoverProp> = ({
     <Popover className={`${className}`}>
       <Popover.Button className="block group focus:outline-none relative">
         {!!cart?.items.length && (
-          <span
-            aria-label="items on cart"
-            className="bg-orange-400 text-white rounded-full font-bold absolute -top-2 -right-2 text-xs w-[1.125rem]"
-          >
+          <span className="bg-orange-400 text-white rounded-full font-bold absolute -top-2 -right-2 text-xs w-[1.125rem]">
+            <span className="sr-only">Items on cart</span>
             {cart.items.length}
           </span>
         )}
