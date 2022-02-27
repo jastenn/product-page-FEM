@@ -35,7 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/product-page-with-react-tailwind-css-headless-ui-and-swiper-G-6uWoiNl)
+- Solution URL: [Front-end Mentor](https://www.frontendmentor.io/solutions/product-page-with-react-tailwind-css-headless-ui-and-swiper-G-6uWoiNl)
+- Live Preview: [Product Page](https://product-page-fem.vercel.app/)
 
 ## My process
 
